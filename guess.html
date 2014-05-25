@@ -1,0 +1,38 @@
+
+<html>
+<head><title>Number Guesser</title></head>
+<link rel="stylesheet" type="text/css" href="raley.css">
+<script>
+// this is javascript
+number = Math.random();
+number = 100 * number + 1;
+number = Math.floor( number );
+
+function HandleTheirGuess () {
+  TheirGuess=document.forms["TheForm"]["Theguess"].value;
+  if (TheirGuess == number) {
+    document.getElementById("chatter").innerHTML = "Guess of " + TheirGuess + " is correct.<br>";
+    document.getElementById("chatter").innerHTML = "I'm thinking of a new number....<br>";
+    number = Math.random();
+    number = 100 * number + 1;
+    number = Math.floor( number );
+  } else if (TheirGuess > number) {
+  	document.getElementById("chatter").innerHTML += "Guess of " + TheirGuess + " was too big.<br>";
+  } else if (TheirGuess < number) {
+    document.getElementById("chatter").innerHTML += "Guess of " + TheirGuess + " was too small.<br>";
+  }
+  
+document.forms["TheForm"]["Theguess"].value = "" ; 
+  
+  return false;
+}
+</script>
+<body>
+<h1>Can You Guess My Number?</h1>
+<div id=chatter><h1>Guess My Number</h1></div>
+<div id="form">
+<form name="TheForm" onsubmit="return HandleTheirGuess()"><input name="Theguess" type=text>
+</form>
+</div>
+</body>
+</html>
